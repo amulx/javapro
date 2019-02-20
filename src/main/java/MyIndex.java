@@ -1,5 +1,4 @@
 import DB.DBUtil;
-import DB.gen.tables.UsersCoin;
 import DB.gen.tables.records.UsersCoinRecord;
 import org.jooq.*;
 import org.jooq.impl.DSL;
