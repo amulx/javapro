@@ -1,35 +1,49 @@
 import DB.DBUtil;
-import org.jooq.DSLContext;
-import org.jooq.Record;
-import org.jooq.Result;
-import org.jooq.SQLDialect;
+import DB.gen.tables.UsersCoin;
+import DB.gen.tables.records.UsersCoinRecord;
+import org.jooq.*;
 import org.jooq.impl.DSL;
 
 
 import java.sql.SQLException;
 
-import static DB.gen.Tables.SHOP_ADMIN;
-import static org.jooq.impl.DSL.select;
+import static DB.gen.Tables.USERS_COIN;
 
 public class MyIndex {
     public static void main(String[] args) throws SQLException {
+        TransCoin("wulong", "xxx", 5);
+    }
 
+    static void TransCoin(final String from, final String to, int coin) throws SQLException {
         DSLContext dslcontext = DSL.using(DBUtil.getConnection(), SQLDialect.MYSQL);
 
-        int pageSize=10;
-        int page = 2;
-        // 查询语句优化
-        // select * from shop_admin where adminid <= (select adminid from shop_admin order by id desc limit 1 offset 20) order by id desc limit 10
-        Result<Record> records = dslcontext.select()
-                .from(SHOP_ADMIN)
-                .where(SHOP_ADMIN.ADMINID.le(select(SHOP_ADMIN.ADMINID).from(SHOP_ADMIN)
-                        .orderBy(SHOP_ADMIN.ADMINID.desc()).limit(1).offset(page*pageSize)))
-                .orderBy(SHOP_ADMIN.ADMINID.desc()).fetch();
+        dslcontext.transaction(new TransactionalRunnable() {
+            @Override
+            public void run(Configuration configuration) throws Throwable {
+                UsersCoinRecord usersCoinRecord = DSL.using(configuration).select()
+                        .from(USERS_COIN)
+                        .where(USERS_COIN.USER_NAME.eq(from))
+                        .fetchOne()
+                        .into(UsersCoinRecord.class);
+                System.out.println(usersCoinRecord.getCoin());
+                if (usersCoinRecord.getCoin()==null || usersCoinRecord.getCoin()<5){
+                    throw new Exception("钱不够了");
+                }
 
-         for (Record r : records){
-//             r.valuesRow();
-             System.out.println(r.get("adminuser"));
-         }
+                int fromResult = DSL.using(configuration).update(USERS_COIN)
+                        .set(USERS_COIN.COIN,usersCoinRecord.getCoin()-5)
+                        .where(USERS_COIN.USER_NAME.eq(from))
+                        .execute();
 
+                int toResult = DSL.using(configuration).update(USERS_COIN)
+                        .set(USERS_COIN.COIN,USERS_COIN.COIN.add(5))
+                        .where(USERS_COIN.USER_NAME.eq(to))
+                        .execute();
+                if (fromResult !=1 || toResult !=1){
+                    throw new RuntimeException("转账失败");
+                }
+                System.out.println("转账完成");
+            }
+        });
     }
 }

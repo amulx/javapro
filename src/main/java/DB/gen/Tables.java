@@ -5,6 +5,7 @@ package DB.gen;
 
 
 import DB.gen.tables.ShopAdmin;
+import DB.gen.tables.UsersCoin;
 
 import javax.annotation.Generated;
 
@@ -26,4 +27,9 @@ public class Tables {
      * The table <code>imooc_shop.shop_admin</code>.
      */
     public static final ShopAdmin SHOP_ADMIN = DB.gen.tables.ShopAdmin.SHOP_ADMIN;
+
+    /**
+     * The table <code>imooc_shop.users_coin</code>.
+     */
+    public static final UsersCoin USERS_COIN = DB.gen.tables.UsersCoin.USERS_COIN;
 }

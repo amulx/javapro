@@ -5,6 +5,7 @@ package DB.gen;
 
 
 import DB.gen.tables.ShopAdmin;
+import DB.gen.tables.UsersCoin;
 
 import javax.annotation.Generated;
 
@@ -33,6 +34,7 @@ public class Indexes {
     public static final Index SHOP_ADMIN_PRIMARY = Indexes0.SHOP_ADMIN_PRIMARY;
     public static final Index SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINEMAIL = Indexes0.SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINEMAIL;
     public static final Index SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINPASS = Indexes0.SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINPASS;
+    public static final Index USERS_COIN_PRIMARY = Indexes0.USERS_COIN_PRIMARY;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -42,5 +44,6 @@ public class Indexes {
         public static Index SHOP_ADMIN_PRIMARY = Internal.createIndex("PRIMARY", ShopAdmin.SHOP_ADMIN, new OrderField[] { ShopAdmin.SHOP_ADMIN.ADMINID }, true);
         public static Index SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINEMAIL = Internal.createIndex("shop_admin_adminuser_adminemail", ShopAdmin.SHOP_ADMIN, new OrderField[] { ShopAdmin.SHOP_ADMIN.ADMINUSER, ShopAdmin.SHOP_ADMIN.ADMINEMAIL }, true);
         public static Index SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINPASS = Internal.createIndex("shop_admin_adminuser_adminpass", ShopAdmin.SHOP_ADMIN, new OrderField[] { ShopAdmin.SHOP_ADMIN.ADMINUSER, ShopAdmin.SHOP_ADMIN.ADMINPASS }, true);
+        public static Index USERS_COIN_PRIMARY = Internal.createIndex("PRIMARY", UsersCoin.USERS_COIN, new OrderField[] { UsersCoin.USERS_COIN.USER_NAME }, true);
     }
 }

@@ -5,6 +5,7 @@ package DB.gen;
 
 
 import DB.gen.tables.ShopAdmin;
+import DB.gen.tables.UsersCoin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ImoocShop extends SchemaImpl {
 
-    private static final long serialVersionUID = 122707506;
+    private static final long serialVersionUID = -1877543575;
 
     /**
      * The reference instance of <code>imooc_shop</code>
@@ -41,6 +42,11 @@ public class ImoocShop extends SchemaImpl {
      * The table <code>imooc_shop.shop_admin</code>.
      */
     public final ShopAdmin SHOP_ADMIN = DB.gen.tables.ShopAdmin.SHOP_ADMIN;
+
+    /**
+     * The table <code>imooc_shop.users_coin</code>.
+     */
+    public final UsersCoin USERS_COIN = DB.gen.tables.UsersCoin.USERS_COIN;
 
     /**
      * No further instances allowed
@@ -67,6 +73,7 @@ public class ImoocShop extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            ShopAdmin.SHOP_ADMIN);
+            ShopAdmin.SHOP_ADMIN,
+            UsersCoin.USERS_COIN);
     }
 }

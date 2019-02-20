@@ -5,7 +5,9 @@ package DB.gen;
 
 
 import DB.gen.tables.ShopAdmin;
+import DB.gen.tables.UsersCoin;
 import DB.gen.tables.records.ShopAdminRecord;
+import DB.gen.tables.records.UsersCoinRecord;
 
 import javax.annotation.Generated;
 
@@ -42,6 +44,7 @@ public class Keys {
     public static final UniqueKey<ShopAdminRecord> KEY_SHOP_ADMIN_PRIMARY = UniqueKeys0.KEY_SHOP_ADMIN_PRIMARY;
     public static final UniqueKey<ShopAdminRecord> KEY_SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINEMAIL = UniqueKeys0.KEY_SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINEMAIL;
     public static final UniqueKey<ShopAdminRecord> KEY_SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINPASS = UniqueKeys0.KEY_SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINPASS;
+    public static final UniqueKey<UsersCoinRecord> KEY_USERS_COIN_PRIMARY = UniqueKeys0.KEY_USERS_COIN_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -60,5 +63,6 @@ public class Keys {
         public static final UniqueKey<ShopAdminRecord> KEY_SHOP_ADMIN_PRIMARY = Internal.createUniqueKey(ShopAdmin.SHOP_ADMIN, "KEY_shop_admin_PRIMARY", ShopAdmin.SHOP_ADMIN.ADMINID);
         public static final UniqueKey<ShopAdminRecord> KEY_SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINEMAIL = Internal.createUniqueKey(ShopAdmin.SHOP_ADMIN, "KEY_shop_admin_shop_admin_adminuser_adminemail", ShopAdmin.SHOP_ADMIN.ADMINUSER, ShopAdmin.SHOP_ADMIN.ADMINEMAIL);
         public static final UniqueKey<ShopAdminRecord> KEY_SHOP_ADMIN_SHOP_ADMIN_ADMINUSER_ADMINPASS = Internal.createUniqueKey(ShopAdmin.SHOP_ADMIN, "KEY_shop_admin_shop_admin_adminuser_adminpass", ShopAdmin.SHOP_ADMIN.ADMINUSER, ShopAdmin.SHOP_ADMIN.ADMINPASS);
+        public static final UniqueKey<UsersCoinRecord> KEY_USERS_COIN_PRIMARY = Internal.createUniqueKey(UsersCoin.USERS_COIN, "KEY_users_coin_PRIMARY", UsersCoin.USERS_COIN.USER_NAME);
     }
 }
